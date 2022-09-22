@@ -83,5 +83,11 @@ namespace Exemplo01_Conexao_DB
 
             }
         }
+
+        private void btnCadastrarCurso_Click(object sender, EventArgs e)
+        {
+            Cadastrar cadastrarForm = new Cadastrar();
+            cadastrarForm.ShowDialog();
+        }
     }
 }

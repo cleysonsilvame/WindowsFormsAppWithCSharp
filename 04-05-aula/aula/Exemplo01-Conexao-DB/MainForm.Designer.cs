@@ -31,6 +31,7 @@
             this.lbxCourses = new System.Windows.Forms.ListBox();
             this.lbxStudents = new System.Windows.Forms.ListBox();
             this.btnCheck = new System.Windows.Forms.Button();
+            this.btnCadastrarCurso = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbxCourses
@@ -51,7 +52,7 @@
             // 
             // btnCheck
             // 
-            this.btnCheck.Location = new System.Drawing.Point(350, 214);
+            this.btnCheck.Location = new System.Drawing.Point(350, 164);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(75, 23);
             this.btnCheck.TabIndex = 2;
@@ -59,11 +60,22 @@
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
+            // btnCadastrarCurso
+            // 
+            this.btnCadastrarCurso.Location = new System.Drawing.Point(350, 266);
+            this.btnCadastrarCurso.Name = "btnCadastrarCurso";
+            this.btnCadastrarCurso.Size = new System.Drawing.Size(75, 23);
+            this.btnCadastrarCurso.TabIndex = 3;
+            this.btnCadastrarCurso.Text = "Cadastrar Curso";
+            this.btnCadastrarCurso.UseVisualStyleBackColor = true;
+            this.btnCadastrarCurso.Click += new System.EventHandler(this.btnCadastrarCurso_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCadastrarCurso);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.lbxStudents);
             this.Controls.Add(this.lbxCourses);
@@ -79,6 +91,7 @@
         private System.Windows.Forms.ListBox lbxCourses;
         private System.Windows.Forms.ListBox lbxStudents;
         private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Button btnCadastrarCurso;
     }
 }
 

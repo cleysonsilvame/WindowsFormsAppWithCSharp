@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExercEventos.Helpers;
+using System;
 using System.Windows.Forms;
 
 namespace ExercEventos
 {
     public partial class MainForm : Form
     {
+        
         public MainForm()
         {
             InitializeComponent();
@@ -20,17 +15,23 @@ namespace ExercEventos
         private void btnEventos_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Eventos eventosForm = new Eventos();
-            eventosForm.ShowDialog();
-            this.Show();
+            Eventos eventosForm = new Eventos(ConnectionHelper.GetConnectionsBuilder);
+            closeOrShowMainForm(eventosForm.ShowDialog());
         }
 
         private void btnInstituicoes_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Instituicoes instituicoesForm = new Instituicoes();
-            instituicoesForm.ShowDialog();
-            this.Show();
+            Instituicoes instituicoesForm = new Instituicoes(ConnectionHelper.GetConnectionsBuilder);
+            closeOrShowMainForm(instituicoesForm.ShowDialog());
+        }
+
+        private void closeOrShowMainForm(DialogResult result)
+        {
+            if (result == DialogResult.Cancel)
+                this.DestroyHandle();
+            else
+                this.Show();
         }
     }
 }

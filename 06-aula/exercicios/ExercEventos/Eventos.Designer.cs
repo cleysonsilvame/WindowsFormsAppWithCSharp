@@ -48,6 +48,8 @@ namespace ExercEventos
             this.lbld = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblInformacoes = new System.Windows.Forms.Label();
+            this.btnExibir = new System.Windows.Forms.Button();
+            this.btnVoltar = new System.Windows.Forms.Button();
             this.pnlnfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +60,7 @@ namespace ExercEventos
             this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdicionar.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAdicionar.Location = new System.Drawing.Point(86, 265);
+            this.btnAdicionar.Location = new System.Drawing.Point(86, 276);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(115, 36);
             this.btnAdicionar.TabIndex = 15;
@@ -73,7 +75,7 @@ namespace ExercEventos
             this.btnConsultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConsultar.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsultar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnConsultar.Location = new System.Drawing.Point(235, 265);
+            this.btnConsultar.Location = new System.Drawing.Point(235, 276);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(115, 36);
             this.btnConsultar.TabIndex = 16;
@@ -88,7 +90,7 @@ namespace ExercEventos
             this.btnAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAlterar.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlterar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAlterar.Location = new System.Drawing.Point(384, 265);
+            this.btnAlterar.Location = new System.Drawing.Point(384, 276);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(115, 36);
             this.btnAlterar.TabIndex = 17;
@@ -103,7 +105,7 @@ namespace ExercEventos
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcluir.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExcluir.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnExcluir.Location = new System.Drawing.Point(533, 265);
+            this.btnExcluir.Location = new System.Drawing.Point(533, 276);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(115, 36);
             this.btnExcluir.TabIndex = 18;
@@ -128,7 +130,7 @@ namespace ExercEventos
             this.pnlnfo.Controls.Add(this.txtID);
             this.pnlnfo.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlnfo.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlnfo.Location = new System.Drawing.Point(70, 47);
+            this.pnlnfo.Location = new System.Drawing.Point(70, 58);
             this.pnlnfo.Name = "pnlnfo";
             this.pnlnfo.Size = new System.Drawing.Size(596, 187);
             this.pnlnfo.TabIndex = 3;
@@ -252,11 +254,41 @@ namespace ExercEventos
             this.lblInformacoes.AutoSize = true;
             this.lblInformacoes.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInformacoes.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblInformacoes.Location = new System.Drawing.Point(83, 39);
+            this.lblInformacoes.Location = new System.Drawing.Point(83, 50);
             this.lblInformacoes.Name = "lblInformacoes";
             this.lblInformacoes.Size = new System.Drawing.Size(192, 18);
             this.lblInformacoes.TabIndex = 4;
             this.lblInformacoes.Text = "Informações dos Eventos";
+            // 
+            // btnExibir
+            // 
+            this.btnExibir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(136)))), ((int)(((byte)(57)))));
+            this.btnExibir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(134)))), ((int)(((byte)(54)))));
+            this.btnExibir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExibir.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExibir.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnExibir.Location = new System.Drawing.Point(583, 12);
+            this.btnExibir.Name = "btnExibir";
+            this.btnExibir.Size = new System.Drawing.Size(65, 29);
+            this.btnExibir.TabIndex = 19;
+            this.btnExibir.Text = "Exibir";
+            this.btnExibir.UseVisualStyleBackColor = true;
+            this.btnExibir.Click += new System.EventHandler(this.btnExibir_Click);
+            // 
+            // btnVoltar
+            // 
+            this.btnVoltar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(136)))), ((int)(((byte)(57)))));
+            this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(134)))), ((int)(((byte)(54)))));
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoltar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnVoltar.Location = new System.Drawing.Point(86, 12);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(65, 29);
+            this.btnVoltar.TabIndex = 20;
+            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // Eventos
             // 
@@ -264,6 +296,8 @@ namespace ExercEventos
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(740, 337);
+            this.Controls.Add(this.btnVoltar);
+            this.Controls.Add(this.btnExibir);
             this.Controls.Add(this.lblInformacoes);
             this.Controls.Add(this.pnlnfo);
             this.Controls.Add(this.btnAdicionar);
@@ -302,5 +336,7 @@ namespace ExercEventos
         private System.Windows.Forms.Label lblEvento;
         private System.Windows.Forms.TextBox txtEvento;
         private System.Windows.Forms.Label lblValor;
+        private Button btnExibir;
+        private Button btnVoltar;
     }
 }

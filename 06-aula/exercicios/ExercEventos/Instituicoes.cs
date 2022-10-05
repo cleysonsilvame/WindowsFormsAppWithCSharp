@@ -1,35 +1,21 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExercEventos
 {
     public partial class Instituicoes : Form
     {
+        private const string TABLE = "instituicoes";
         private readonly MySqlConnection _conn;
 
-        public Instituicoes()
+        public Instituicoes(MySqlConnectionStringBuilder connectionBuilder)
         {
             InitializeComponent();
 
-            MySqlConnectionStringBuilder connBuilder = new MySqlConnectionStringBuilder();
-
-            connBuilder.Server = "localhost";
-            connBuilder.UserID = "root";
-            connBuilder.Password = "root";
-            connBuilder.Database = "sistema_teds";
-            connBuilder.Port = 3306;
-
             bool includeCredentials = true;
 
-            _conn = new MySqlConnection(connBuilder.GetConnectionString(includeCredentials));
+            _conn = new MySqlConnection(connectionBuilder.GetConnectionString(includeCredentials));
         }
 
         private void Eventos_Load(object sender, EventArgs e)
@@ -46,113 +32,151 @@ namespace ExercEventos
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                String sql = $"INSERT INTO {TABLE} VALUES (@id, @nome, @cidade, @uf)";
+                MySqlCommand command = new MySqlCommand(sql, _conn);
+                command.Parameters.AddWithValue("id", txtID.Text);
+                command.Parameters.AddWithValue("nome", txtNome.Text);
+                command.Parameters.AddWithValue("cidade", txtCidade.Text);
+                command.Parameters.AddWithValue("uf", txtUF.Text);
 
+                command.Prepare();
+
+                if (command.ExecuteNonQuery() < 1)
+                {
+                    MessageBox.Show("Não foi possível adicionar a instituição", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Instituição adicionada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InterfaceHelper.ClearAllTextBoxs(pnlnfo.Controls);
+                }
+
+                command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    String sql = "SELECT * FROM alunos WHERE id=@id";
-            //    MySqlCommand command = new MySqlCommand(sql, _conn);
-            //    command.Parameters.AddWithValue("id", txtId.Text);
-            //    MySqlDataReader reader = command.ExecuteReader();
-
-            //    if (!reader.Read())
-            //    {
-            //        MessageBox.Show("Aluno não encontrado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    }
-            //    else
-            //    {
-
-            //        txtNome.Text = reader.GetString("nome");
-            //        txtCurso.Text = reader.GetString("curso");
-            //    }
-
-
-
-
-            //    command.Dispose();
-            //    reader.Close();
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //}
+            selectInstituicoesById(txtID.Text);
         }
+
+
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    String sql = "UPDATE alunos SET nome=@nome, curso=@curso WHERE id=@id";
-            //    MySqlCommand command = new MySqlCommand(sql, _conn);
-            //    command.Parameters.AddWithValue("id", txtId.Text);
-            //    command.Parameters.AddWithValue("nome", txtNome.Text);
-            //    command.Parameters.AddWithValue("curso", txtCurso.Text);
+            try
+            {
+                String sql = $"UPDATE {TABLE} SET id_instituicao=@id, nm_instituicao=@nome, ds_cidade=@cidade, ds_uf=@uf WHERE id_instituicao=@id";
+
+                MySqlCommand command = new MySqlCommand(sql, _conn);
+                command.Parameters.AddWithValue("id", txtID.Text);
+                command.Parameters.AddWithValue("nome", txtNome.Text);
+                command.Parameters.AddWithValue("cidade", txtCidade.Text);
+                command.Parameters.AddWithValue("uf", txtUF.Text);
 
 
-            //    if (command.ExecuteNonQuery() == 0)
-            //    {
-            //        MessageBox.Show("Aluno não encontrado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Aluno atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    MessageBox.Show("Instituição não encontrada", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Instituição atualizada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InterfaceHelper.ClearAllTextBoxs(pnlnfo.Controls);
+                }
 
-            //        txtId.Clear();
-            //        txtNome.Clear();
-            //        txtCurso.Clear();
-            //    }
+                command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
-
-            //    command.Dispose();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //}
+            }
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    String sql = "DELETE FROM alunos WHERE id=@id";
-            //    MySqlCommand command = new MySqlCommand(sql, _conn);
-            //    command.Parameters.AddWithValue("id", txtId.Text);
-            //    command.Parameters.AddWithValue("nome", txtNome.Text);
-            //    command.Parameters.AddWithValue("curso", txtCurso.Text);
+            try
+            {
+                String sql = $"DELETE FROM {TABLE} WHERE id_instituicao=@id";
+                MySqlCommand command = new MySqlCommand(sql, _conn);
+                command.Parameters.AddWithValue("id", txtID.Text);
 
 
-            //    if (command.ExecuteNonQuery() == 0)
-            //    {
-            //        MessageBox.Show("Aluno não encontrado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Aluno deletado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //        txtId.Clear();
-            //        txtNome.Clear();
-            //        txtCurso.Clear();
-            //    }
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    MessageBox.Show("Instituição não encontrada", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Instituição deletada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InterfaceHelper.ClearAllTextBoxs(pnlnfo.Controls);
+                }
 
 
 
-            //    command.Dispose();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            //}
+            }
         }
 
+        private void btnExibir_Click(object sender, EventArgs e)
+        {
+            var helper = new TabelaHelper(TABLE, _conn);
+
+            helper.Show();
+
+            if (helper.IsSelectedRowId)
+            {
+                selectInstituicoesById(helper.RowId);
+            }
+        }
+
+        private void selectInstituicoesById(string id)
+        {
+            try
+            {
+                String sql = $"SELECT * FROM {TABLE} WHERE id_instituicao=@id";
+                MySqlCommand command = new MySqlCommand(sql, _conn);
+                command.Parameters.AddWithValue("id", id);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (!reader.Read())
+                {
+                    MessageBox.Show("Instituição não encontrada", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    txtID.Text = reader.GetString("id_instituicao");
+                    txtNome.Text = reader.GetString("nm_instituicao");
+                    txtCidade.Text = reader.GetString("ds_cidade");
+                    txtUF.Text = reader.GetString("ds_uf");
+                }
+
+                command.Dispose();
+                reader.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Abort;
+        }
     }
 }

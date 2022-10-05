@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvTabela = new System.Windows.Forms.DataGridView();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabela)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +47,7 @@
             this.dgvTabela.Size = new System.Drawing.Size(610, 245);
             this.dgvTabela.TabIndex = 0;
             this.dgvTabela.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTabela_CellMouseDoubleClick);
+            this.dgvTabela.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTabela_CellMouseEnter);
             // 
             // Tabela
             // 
@@ -65,5 +68,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvTabela;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

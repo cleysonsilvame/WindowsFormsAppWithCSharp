@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Princial.master.cs" Inherits="Agenda.Princial" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <header>
+                <h1>Agenda Web</h1>
+                <nav>
+                    <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
+                        <Items>
+                            <asp:MenuItem Text="Home" Value="Home" NavigateUrl="index.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Usuário" NavigateUrl="usuarios.aspx" Value="Usuário"></asp:MenuItem>
+                            <asp:MenuItem Text="Contato" NavigateUrl="contato.aspx" Value="Contato"></asp:MenuItem>
+                            <asp:MenuItem Text="Sair" Value="Sair"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+                </nav>
+            </header>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <footer>
+            <p>
+                Exemplo de agenda
+            </p>
+        </footer>
+    </form>
+</body>
+</html>
